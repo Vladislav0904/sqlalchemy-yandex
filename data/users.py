@@ -1,9 +1,10 @@
 import sqlalchemy
 import datetime
 from .db_session import SqlAlchemyBase
+from sqlalchemy_serializer import SerializerMixin
 
 
-class User(SqlAlchemyBase):
+class User(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
@@ -21,4 +22,4 @@ class User(SqlAlchemyBase):
                                       default=datetime.datetime.now)
 
     def __repr__(self):
-        return f'{self.id}, {self.name}, {self.email}, {self.about}.'
+        return f'<Colonist> {self.id}, {self.surname}, {self.name}'
